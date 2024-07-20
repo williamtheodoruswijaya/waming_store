@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'models/task.dart';
 
 class AddTaskPage extends StatefulWidget {
   const AddTaskPage({super.key});
@@ -19,13 +21,29 @@ class _AddTaskPageState extends State<AddTaskPage> {
   bool _isImportant = false;
   bool _isComplete = false;
   double _progress = 0.0;
-  DateTime _dueData = DateTime.now();
+  DateTime _dueDate = DateTime.now();
   // List pilihan buat dropdown
   final List<String> _iconPaths = [
     "images/task1.png",
     "images/task2.png",
     "images/task3.png",
   ];
+
+  void addTask(){
+    if(_formKey.currentState!.validate()){
+      _formKey.currentState!.save();
+      final newTask = Task(
+        _title, 
+        _description,
+        _iconPath,
+        _isImportant,
+        _isComplete,
+        _progress,
+        _dueDate
+      );
+      Navigator.pop(context, newTask); // mindahin object newTask ke page sebelumnya
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,13 +107,44 @@ class _AddTaskPageState extends State<AddTaskPage> {
                             });
                           }),
                       SwitchListTile(
-                          title: const Text("Is Complete"),
+                          title: const Text("Is complete"),
                           value: _isComplete,
                           onChanged: (value) {
                             setState(() {
-                              _isComplete = value ?? _isComplete;
+                              _isComplete = value;
                             });
-                          })
+                          }),
+                      Slider(
+                        label: "Task Progress",
+                        value: _progress,
+                        onChanged: (value) {
+                          setState(() {
+                            _progress = value;
+                          });
+                        },
+                      ),
+                      ListTile(
+                        title: const Text("Due Date"),
+                        trailing: Text(DateFormat('MMM dd, yyyy').format(_dueDate)),
+                        onTap: () async {
+                          final DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: _dueDate,
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime.now().add(const Duration(days: 365)),
+                          );
+                          if (pickedDate != null && pickedDate != _dueDate) {
+                            setState(() {
+                              _dueDate = pickedDate;
+                            });
+                          }
+                        } // Dia bakal nampilin text dibawah title.
+                      ),
+                      const SizedBox(height:30),
+                      ElevatedButton(
+                        onPressed: addTask, // Action ketika button di click
+                        child: const Text("Add Task"), // UI yg mau didisplay apa
+                      )
                     ])))));
   }
 }
