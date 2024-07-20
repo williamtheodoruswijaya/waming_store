@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'task_page.dart';
 
 void main() {
   runApp(const MainPage());
@@ -11,11 +11,10 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sherly',
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange
-      ),
-      home: HomePage()
-    );
+        title: 'Waming sTore',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
+        home: const taskPage());
   }
 }
