@@ -44,8 +44,15 @@ class _LoginPageState extends State<LoginPage> {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text(
-                                        "Onii-chan please enter your email")));
+                                        "C'mon, don't be shy! What's your email?")));
                             return "Please enter your email";
+                          }
+                          if (!value.contains("@")) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        "Onii-chan, Onegaishimasu! Enter a valid email!")));
+                            return "Please enter a valid email";
                           }
                           return null;
                         },
@@ -58,10 +65,9 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: const InputDecoration(labelText: "Password"),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text(
-                                      "Onii-chan please enter your password")));
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text(
+                                  "Onii-chan, Onegaishimasu! Enter your password!")));
                           return "Please enter your password";
                         }
                         return null;

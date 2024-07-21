@@ -69,6 +69,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                             "Baka Yarou, please enter your email")));
                                 return "Please enter your email";
                               }
+                              if (!value.contains("@")) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            "Are you trying to be funny? Enter a valid email!")));
+                                return "Please enter a valid email";
+                              }
                               return null;
                             },
                             onSaved: (value) {
