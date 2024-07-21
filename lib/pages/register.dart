@@ -13,6 +13,13 @@ String _name = "";
 String _email = "";
 String _password = "";
 
+void handleRegister(BuildContext context) {
+  if (_formKey.currentState!.validate()) {
+    _formKey.currentState!.save();
+    // Add the register logic here
+  }
+}
+
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
@@ -28,70 +35,79 @@ class _RegisterPageState extends State<RegisterPage> {
               children: <Widget>[
                 const Image(image: AssetImage('images/RegisterImage.png')),
                 Form(
-                    child: Container(
-                        key: _formKey,
-                        child: Column(
-                          children: <Widget>[
-                            const SizedBox(height: 20),
-                            TextFormField(
-                                decoration:
-                                    const InputDecoration(labelText: "Name"),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter your name";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value) {
-                                  _name = value ?? _name;
-                                }),
-                            const SizedBox(height: 20),
-                            TextFormField(
-                                decoration:
-                                    const InputDecoration(labelText: "Email"),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter your email";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value) {
-                                  _email = value ?? _email;
-                                }),
-                            const SizedBox(height: 20),
-                            TextFormField(
-                                decoration: const InputDecoration(
-                                    labelText: "Password"),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter your password";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value) {
-                                  _password = value ?? _password;
-                                }),
-                            const SizedBox(height: 40),
-                            SizedBox(
-                                width: 400,
-                                height: 50,
-                                child: ElevatedButton(
-                                  onPressed: () => {
-                                    if (_formKey.currentState!.validate())
-                                      {
-                                        _formKey.currentState!.save(),
-                                        // Add the register logic here
-                                      }
-                                  },
-                                  style: ButtonStyle(
-                                      backgroundColor: WidgetStateProperty.all(
-                                          Colors.orange[800])),
-                                  child: const Text("Register",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20)),
-                                ))
-                          ],
-                        )))
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        const SizedBox(height: 20),
+                        TextFormField(
+                            autocorrect: false,
+                            decoration:
+                                const InputDecoration(labelText: "Name"),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            "Oi, Traveler, what is your name?")));
+                                return "Please enter your name";
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              _name = value ?? _name;
+                            }),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                            autocorrect: false,
+                            decoration:
+                                const InputDecoration(labelText: "Email"),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            "Baka Yarou, please enter your email")));
+                                return "Please enter your email";
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              _email = value ?? _email;
+                            }),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                            autocorrect: false,
+                            obscureText: true,
+                            decoration:
+                                const InputDecoration(labelText: "Password"),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            "Tch! You forgot to enter your password, Shine!")));
+                                return "Please enter your password";
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              _password = value ?? _password;
+                            }),
+                        const SizedBox(height: 40),
+                        SizedBox(
+                            width: 400,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () => {handleRegister(context)},
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all(
+                                      Colors.orange[800])),
+                              child: const Text("Register",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                            ))
+                      ],
+                    ))
               ],
             )));
   }

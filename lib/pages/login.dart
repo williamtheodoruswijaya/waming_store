@@ -7,12 +7,19 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-final _formKey = GlobalKey<FormState>();
-
-String _email = "";
-String _password = "";
-
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  String _email = "";
+  String _password = "";
+
+  void handleLogin(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      // Add the login logic here
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,59 +30,60 @@ class _LoginPageState extends State<LoginPage> {
         ),
         body: SingleChildScrollView(
             padding: const EdgeInsets.all(20),
-            child: Column(children: <Widget>[
+            child: Column(children: [
               const Image(image: AssetImage('images/LoginImage.png')),
               Form(
-                  child: Container(
-                      key: _formKey,
-                      child: Column(children: <Widget>[
-                        const SizedBox(height: 20),
-                        TextFormField(
-                            decoration:
-                                const InputDecoration(labelText: "Email"),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Please enter your email";
-                              }
-                              return null;
-                            },
-                            onSaved: (value) {
-                              _email = value ?? _email;
-                            }),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(labelText: "Password"),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter your password";
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            _password = value ?? _password;
-                          },
-                        ),
-                        const SizedBox(height: 40),
-                        SizedBox(
-                            width: 400,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: () => {
-                                if (_formKey.currentState!.validate())
-                                  {
-                                    _formKey.currentState!.save(),
-                                    // Add the login logic here
-                                  }
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStateProperty.all(
-                                      Colors.cyan[800])),
-                              child: const Text("Login",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20)),
-                            ))
-                      ]))) // Add a child argument to the Form constructor
+                  key:
+                      _formKey, // FormKey harus selalu berada di dalam Form widget, ga boleh di luar apalagi di dalam Column
+                  child: Column(children: [
+                    const SizedBox(height: 20),
+                    TextFormField(
+                        decoration: const InputDecoration(labelText: "Email"),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        "Onii-chan please enter your email")));
+                            return "Please enter your email";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _email = value ?? _email;
+                        }),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: const InputDecoration(labelText: "Password"),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      "Onii-chan please enter your password")));
+                          return "Please enter your password";
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _password = value ?? _password;
+                      },
+                    ),
+                    const SizedBox(height: 40),
+                    SizedBox(
+                        width: 400,
+                        height: 50,
+                        child: ElevatedButton(
+                          onPressed: () => {handleLogin(context)},
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStateProperty.all(Colors.cyan[800])),
+                          child: const Text("Login",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20)),
+                        ))
+                  ])) // Add a child argument to the Form constructor
             ])));
   }
 }
