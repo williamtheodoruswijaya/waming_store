@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waming_store/pages/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,6 +18,14 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       // Add the login logic here
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(
+              isDarkTheme: false,
+            ),
+          ),
+          (route) => false);
     }
   }
 

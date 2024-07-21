@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/home.dart';
+import 'pages/auth.dart';
 
 void main() {
   runApp(const MainPage());
@@ -15,6 +15,6 @@ class MainPage extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
-        home: const HomePage());
+        home: const AuthPage());
   }
 }
