@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'task_page.dart';
+import 'pages/home.dart';
 
 void main() {
   runApp(const MainPage());
@@ -15,6 +15,6 @@ class MainPage extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
-        home: const taskPage());
+        home: const HomePage());
   }
 }
