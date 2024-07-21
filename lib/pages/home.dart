@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                   style: ButtonStyle(
                       backgroundColor:
                           WidgetStateProperty.all(Colors.cyanAccent[800])),
-                  child: const Text("Login"))),
+                  child: const Text("Login", style: TextStyle(fontSize: 20)))),
           const SizedBox(height: 20),
           SizedBox(
               width: 300,
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                 style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.cyan[800])),
                 child: const Text("Register",
-                    style: TextStyle(color: Colors.white)),
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
               )),
         ])));
   }

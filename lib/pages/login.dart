@@ -72,7 +72,8 @@ class _LoginPageState extends State<LoginPage> {
                                   backgroundColor: WidgetStateProperty.all(
                                       Colors.cyan[800])),
                               child: const Text("Login",
-                                  style: TextStyle(color: Colors.white)),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
                             ))
                       ]))) // Add a child argument to the Form constructor
             ])));
