@@ -31,10 +31,12 @@ class _HomePageState extends State<HomePage> {
                     // Add the logout logic here
                     Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => AuthPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const AuthPage()),
                         (route) => false);
                   },
-                  child: Row(children: [Icon(Icons.logout), Text("Logout")]))
+                  child:
+                      const Row(children: [Icon(Icons.logout), Text("Logout")]))
             ],
             color: Colors.grey[200],
           )
