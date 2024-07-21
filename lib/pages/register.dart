@@ -13,10 +13,37 @@ String _name = "";
 String _email = "";
 String _password = "";
 
+void registerConfirmation(BuildContext context) async {
+  bool? confirmRegister = await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: const Text("Traveler, are you sure you want to register?"),
+            content: const Text("Your journey in Waming sTore awaits!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text("No"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text("Yes"),
+              ),
+            ]);
+      });
+  if (confirmRegister ?? false) {
+    // Add the register logic here
+  }
+}
+
 void handleRegister(BuildContext context) {
   if (_formKey.currentState!.validate()) {
     _formKey.currentState!.save();
-    // Add the register logic here
+    registerConfirmation(context);
   }
 }
 
