@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waming_store/pages/auth.dart';
 
 class HomePage extends StatefulWidget {
   bool isDarkTheme;
@@ -25,7 +26,14 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: const Row(
                       children: [Icon(Icons.star), Text("Change theme")])),
-              const PopupMenuItem(
+              PopupMenuItem(
+                  onTap: () {
+                    // Add the logout logic here
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => AuthPage()),
+                        (route) => false);
+                  },
                   child: Row(children: [Icon(Icons.logout), Text("Logout")]))
             ],
             color: Colors.grey[200],
