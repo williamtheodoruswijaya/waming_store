@@ -25,6 +25,7 @@ class AuthPage extends StatelessWidget {
             child: Column(children: [
           const Padding(padding: EdgeInsets.all(20)),
           const Image(image: AssetImage('images/Logo.png')),
+          const SizedBox(height: 20),
           SizedBox(
               width: 300,
               height: 50,

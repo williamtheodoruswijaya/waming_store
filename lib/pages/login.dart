@@ -23,6 +23,8 @@ class _LoginPageState extends State<LoginPage> {
           MaterialPageRoute(
             builder: (context) => HomePage(
               isDarkTheme: false,
+              username: _email.split("@")[0],
+              email: _email,
             ),
           ),
           (route) => false);
