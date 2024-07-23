@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:waming_store/pages/auth.dart';
+import 'package:waming_store/pages/cart.dart';
+import 'package:waming_store/pages/history.dart';
+import 'package:waming_store/pages/profile.dart';
 
 class HomePage extends StatefulWidget {
   HomePage(
       {super.key,
       required this.isDarkTheme,
       required this.username,
-      required this.email});
+      required this.email,
+      required this.onThemeChanged});
 
   bool isDarkTheme;
   String username;
   String email;
+  final ValueChanged<bool> onThemeChanged;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -58,15 +63,12 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         setState(() {
                           widget.isDarkTheme = !widget.isDarkTheme;
+                          widget.onThemeChanged(widget.isDarkTheme);
                         });
                       },
                       child: const Row(
                           // Row dipakai untuk menampilkan lebih dari satu widget yang akan ditampilkan secara horizontal
                           children: [Icon(Icons.star), Text("Change theme")])),
-                  PopupMenuItem(
-                      onTap: () => handleLogout(),
-                      child: const Row(
-                          children: [Icon(Icons.logout), Text("Logout")]))
                 ],
                 color: widget.isDarkTheme ? Colors.black : Colors.white,
               )
@@ -78,16 +80,36 @@ class _HomePageState extends State<HomePage> {
           drawer: Drawer(
               child: ListView(children: [
             UserAccountsDrawerHeader(
-              accountName: Text(widget.username),
-              accountEmail: Text(widget.email),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('images/headerImage.png'),
+                fit: BoxFit.cover,
+              )),
+              accountName: Text(widget.username,
+                  style: TextStyle(
+                      color: widget.isDarkTheme
+                          ? Colors.black
+                          : const Color.fromARGB(255, 94, 94, 94))),
+              accountEmail: Text(widget.email,
+                  style: TextStyle(
+                      color: widget.isDarkTheme
+                          ? Colors.black
+                          : const Color.fromARGB(255, 94, 94, 94))),
               currentAccountPicture: const CircleAvatar(
                   child: ClipOval(
                       child: Image(image: AssetImage('images/Avatar.jpg')))),
             ),
+            const ListTile(
+              title: Text("Home"),
+              leading: Icon(Icons.home),
+            ),
+            ListTile(
+              title: const Text("Logout"),
+              leading: const Icon(Icons.logout),
+              onTap: () => handleLogout(),
+            )
           ])),
-          body: const Center(
-            child: Text("Welcome to Waming sTore!"),
-          ),
+          body: Text("Home Page"),
         ));
   }
 }

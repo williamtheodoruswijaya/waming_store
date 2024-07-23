@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waming_store/pages/home.dart';
+import 'package:waming_store/tabs.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(
+            builder: (context) => TabsPage(
               isDarkTheme: false,
               username: _email.split("@")[0],
               email: _email,
