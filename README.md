@@ -5,7 +5,6 @@ Welcome to Waming sTore, a gaming store application built with Flutter. This pro
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
-- [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
@@ -23,11 +22,6 @@ Waming sTore is a mobile application designed to provide a seamless experience f
 - **User Profiles**: Create and manage user profiles to personalize your experience.
 - **Search Functionality**: Quickly find games using the search feature.
 - **Cloud Sync**: Sync your game data and preferences across multiple devices.
-
-## Screenshots
-![Home Screen](screenshots/home_screen.png)
-![Game Details](screenshots/game_details.png)
-![Profile](screenshots/profile.png)
 
 ## Installation
 To get started with Waming sTore, follow these steps:
