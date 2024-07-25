@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:waming_store/components/image_caroulser.dart';
 import 'package:waming_store/pages/auth.dart';
 import 'package:waming_store/pages/cart.dart';
 import 'package:waming_store/pages/history.dart';
@@ -110,7 +111,17 @@ class _HomePageState extends State<HomePage> {
               onTap: () => handleLogout(),
             )
           ])),
-          body: Text("Home Page"),
+          body: Column(
+            children: [
+              ImageCaroulser(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [],
+                ),
+              )
+            ],
+          ),
         ));
   }
 }
